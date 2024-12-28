@@ -4,8 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title', 'Pustaka Nusa')</title>
+  <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -74,11 +80,18 @@
 
     .navbar {
       z-index: 1052;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1052;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .content {
       margin-left: 250px;
       transition: margin-left 0.3s ease;
+      margin-top: 70px;
     }
 
     .content.fullscreen {
@@ -88,6 +101,31 @@
         filter: blur(5px);
         transition: filter 0.3s ease;
     }
+    .profile-card {
+        padding: 20px;
+        width: 300px; /* Atur lebar sesuai kebutuhan */
+        background-color: #f8f9fa; /* Warna latar */
+        border-radius: 10px; /* Opsional, untuk sudut melengkung */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opsional, untuk memberikan efek bayangan */
+        text-align: left; /* Atur teks menjadi rata kiri */
+    }
+    .profile-card h6 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .profile-card small {
+        font-size: 14px;
+    }
+    .pagination .page-item .page-link i {
+        font-size: 0.8rem; /* Mengatur ukuran ikon pagination */
+        line-height: 1; /* Menyesuaikan posisi vertikal ikon */
+    }
+
+    .pagination .page-item .page-link {
+        font-size: 0.9rem;
+    }
+
 
     /* Media Query untuk Responsivitas */
     @media (max-width: 2560px) {
@@ -221,6 +259,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script>
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
@@ -235,6 +275,6 @@
         overlay.classList.toggle('active');
       }
     }
-</script>
+    </script>
 </body>
 </html>

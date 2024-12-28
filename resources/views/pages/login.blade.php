@@ -20,6 +20,13 @@
             max-width: 400px;
             padding: 20px;
         }
+        .login-container h4 {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .login-container p {
+            margin-bottom: 20px;
+        }
         .login-container img {
             width: 200px;
             margin-bottom: 20px;
@@ -41,15 +48,41 @@
             color: #007bff;
             text-decoration: none;
         }
+        .logo-container {
+            background-color: #ffffff;
+            border-radius: 0 0 60px 60px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 0;
+            top: -75px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        h4 {
+            font-family: 'Britannic', sans-serif;
+            font-size: 30px;
+        }
+        .logo-container .font-britannic {
+            display: block;
+            margin-top: 10px;
+            font-size: 30px;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <!-- Logo -->
-        <img src="img/logo.png" alt="Logo Pustaka Nusa">
+        <div class="logo-container">
+            <!-- Title -->
+            <img src="{{ asset('img/logo.png') }}" alt="Yarsi Logo">
+            <h4 class="mt-3">Pustaka Nusa</h4>
+        </div>
 
         <!-- Title -->
-        <h4>Login</h4>
+        <h3 class="mt-3">Login</h3>
         <p>Masukkan <i>username</i> dan <i>password</i> Anda</p>
 
         <!-- Flash Message -->

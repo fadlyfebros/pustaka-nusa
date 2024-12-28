@@ -20,7 +20,7 @@ class CreateLoginTable extends Migration
             $table->string('password', 255);
             $table->string('kelas', 50)->nullable();
             $table->string('alamat', 255)->nullable();
-            $table->boolean('verif')->default(false);
+            $table->string('verif', 10)->default('Tidak');
             $table->string('role', 50)->default('anggota');
             $table->timestamp('join_date')->useCurrent();
             $table->timestamp('terakhir_login')->nullable();

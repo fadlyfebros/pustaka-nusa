@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Home')
+@section('title', 'Home - Pustaka Nusa')
 
 @section('content')
 <div class="hero-section d-flex flex-lg-row flex-column align-items-center">
@@ -9,7 +9,7 @@
         <h1>Selamat Datang Di <br> Perpustakaan <br>Pustaka Nusa</h1>
         <a class="custom-button" href="/login">Mulai Baca</a>
     </div>
-    <div>
+    <div class="hero-image-container">
         <img src="img/hero.png" alt="Hero Image" class="img-fluid custom-img">
     </div>
 </div>

@@ -34,8 +34,9 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'kelas' => '-',
             'alamat' => '-',
-            'verif' => false,
+            'verif' => 'Tidak',
             'role' => 'anggota',
+            'terakhir_login' => now(),
         ]);
 
         return redirect()->route('login')->with('success', 'Pendaftaran berhasil! Silakan login.');
@@ -61,6 +62,10 @@ class AuthController extends Controller
             Session::put('user', [
                 'id' => $user->id_user,
                 'username' => $user->username,
+                'fullname' => $user->fullname,
+                'join_date' => $user->created_at,
+                'last_login' => $user->terakhir_login,
+                'verif' => $user->verif,
                 'role' => $user->role,
             ]);
 

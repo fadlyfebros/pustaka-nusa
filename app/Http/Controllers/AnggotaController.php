@@ -10,8 +10,20 @@ class AnggotaController extends Controller
 {
     public function index()
     {
+        $lastUser = Login::select('kode_user')->orderBy('id_user', 'desc')->first();
+        $newKodeUser = 'AP' . str_pad(($lastUser ? intval(substr($lastUser->kode_user, 2)) + 1 : 1), 3, '0', STR_PAD_LEFT);
+
+        // Dapatkan data anggota
         $anggota = Login::where('role', 'anggota')->paginate(10);
-        return view('admin.pages.dataanggota', compact('anggota'));
+
+        // Kirim data ke view
+        return view('admin.pages.dataanggota', compact('anggota', 'newKodeUser'));
+    }
+    public function home()
+    {
+        $jumlahAnggota = Login::where('role', 'anggota')->count();
+
+        return view('admin.pages.home', compact('jumlahAnggota'));
     }
 
     public function create()
@@ -35,6 +47,7 @@ class AnggotaController extends Controller
         Login::create([
             'kode_user' => $newKodeUser,
             'fullname' => $request->fullname,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'kelas' => $request->kelas,
@@ -55,6 +68,7 @@ class AnggotaController extends Controller
     {
         $request->validate([
             'fullname' => 'required',
+            'username' => 'required',
             'email' => 'required|email',
             'kelas' => 'required',
             'alamat' => 'required',
@@ -63,11 +77,13 @@ class AnggotaController extends Controller
         $anggota = Login::findOrFail($id);
         $anggota->update([
             'fullname' => $request->fullname,
+            'username' => $request->username,
             'email' => $request->email,
             'kelas' => $request->kelas,
             'alamat' => $request->alamat,
         ]);
 
+        // Jika password diisi, maka update password
         if ($request->password) {
             $anggota->update(['password' => Hash::make($request->password)]);
         }

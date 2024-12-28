@@ -42,16 +42,32 @@
         }
         h4 {
             font-family: 'Britannic', sans-serif;
+            font-size: 30px;
+        }
+        .logo-container {
+            background-color: #ffffff;
+            border-radius: 0 0 60px 60px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 0;
+            top: -71px;
+            text-align: center;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
         <!-- Logo -->
-        <img src="{{ asset('img/logo.png') }}" alt="Yarsi Logo">
+        <div class="logo-container">
+            <!-- Title -->
+            <img src="{{ asset('img/logo.png') }}" alt="Yarsi Logo">
+            <h4 class="mt-3">Pustaka Nusa</h4>
+        </div>
 
-        <!-- Title -->
-        <h4 class="mt-3">Pustaka Nusa</h4>
         <h3 class="mt-3">Pendaftaran Akun</h3>
         <p>Silakan isi informasi Anda untuk membuat akun</p>
 

@@ -9,24 +9,22 @@ class Login extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'login'; // Nama tabel
-    protected $primaryKey = 'id_user'; // Primary key
+    protected $table = 'login';
+    protected $primaryKey = 'id_user';
 
     protected $fillable = [
         'kode_user',
         'fullname',
         'username',
-        'email',
         'password',
+        'role',
+        'email',
         'kelas',
         'alamat',
         'verif',
-        'role',
         'join_date',
         'terakhir_login',
     ];
 
-    protected $hidden = [
-        'password',
-    ];
+    protected $hidden = ['password'];
 }

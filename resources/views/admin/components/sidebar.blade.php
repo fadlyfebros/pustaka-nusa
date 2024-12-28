@@ -3,7 +3,7 @@
     <div class="profile-section text-center p-3">
     <img src="{{ asset('img/person.png') }}" alt="Profile Picture">
     <div class="profile-text">
-        <h5>Administrator</h5>
+        <h5>{{ session('user.fullname') }}</h5>
         <p class="text-success"><i class="fas fa-check-circle"></i> Akun Terverifikasi</p>
     </div>
     </div>
@@ -18,9 +18,9 @@
     </a>
     <div class="collapse" id="masterDataMenu">
     <a href="/admin/anggota" class="submenu"><i class="fas fa-circle"></i> Data Anggota</a>
-    <a href="#" class="submenu"><i class="fas fa-circle"></i> Data Penerbit</a>
-    <a href="#" class="submenu"><i class="fas fa-circle"></i> Administrator</a>
-    <a href="#" class="submenu"><i class="fas fa-circle"></i> Data Peminjaman</a>
+    <a href="/admin/datapenerbit" class="submenu"><i class="fas fa-circle"></i> Data Penerbit</a>
+    <a href="/admin/dataadmin" class="submenu"><i class="fas fa-circle"></i> Administrator</a>
+    <a href="/admin/datapeminjamanbuku" class="submenu"><i class="fas fa-circle"></i> Data Peminjaman</a>
     </div>
 
     <!-- Katalog Buku -->
@@ -28,8 +28,8 @@
     <i class="fas fa-book"></i> Katalog Buku
     </a>
     <div class="collapse" id="katalogBukuMenu">
-    <a href="#" class="submenu"><i class="fas fa-circle"></i> Kategori Buku</a>
-    <a href="#" class="submenu"><i class="fas fa-circle"></i> Data Buku</a>
+    <a href="/admin/categories" class="submenu"><i class="fas fa-circle"></i> Kategori Buku</a>
+    <a href="/admin/books" class="submenu"><i class="fas fa-circle"></i> Data Buku</a>
     </div>
 
     <!-- Keluar -->

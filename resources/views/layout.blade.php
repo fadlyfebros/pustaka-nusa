@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Pustaka Nusa')</title>
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'Britannic';
-            src: url('path-to-your-font/Britannic-Bold.ttf') format('truetype');
+            src: url('resource/fonts/Britannic.ttf') format('truetype');
         }
         body {
             font-family: Arial, sans-serif;
@@ -31,6 +32,31 @@
             padding: 10px 20px;
             text-decoration: none;
             border: none;
+            margin-top: 20px;
+        }
+        .hero-image-container {
+            margin-left: 200px;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+        }
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .hero-image-container {
+                margin: auto; /* Posisikan gambar di tengah */
+                text-align: center;
+            }
+            .hero-text p {
+                font-size: 2rem; /* Perbesar teks pada mobile */
+            }
+            .hero-text h1 {
+                font-size: 3.5rem; /* Perbesar heading pada mobile */
+            }
         }
     </style>
 </head>

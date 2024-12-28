@@ -9,7 +9,7 @@
 
     <div class="card">
         <div class="card-body">
-            <table class="table table-striped">
+            <table id="tableAnggota" class="table table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <div class="mt-3">
+    <div class="mt-4">
         {{ $anggota->links() }}
     </div>
 </div>
@@ -82,6 +82,10 @@
                         <input type="text" class="form-control" id="fullname" name="fullname" required>
                     </div>
                     <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
@@ -92,6 +96,7 @@
                     <div class="mb-3">
                         <label for="kelas" class="form-label">Kelas</label>
                         <select class="form-control" id="kelas" name="kelas" required>
+                            <option value="Fakultas Kedokteran">Pilih Kelas</option>
                             <option value="Fakultas Kedokteran">Fakultas Kedokteran</option>
                             <option value="Fakultas Ekonomi">Fakultas Ekonomi</option>
                             <option value="Fakultas Teknologi Informasi">Fakultas Teknologi Informasi</option>
@@ -132,6 +137,10 @@
                         <input type="text" class="form-control" id="edit_fullname" name="fullname" required>
                     </div>
                     <div class="mb-3">
+                        <label for="edit_username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="edit_username" name="username" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="edit_email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="edit_email" name="email" required>
                     </div>
@@ -142,6 +151,7 @@
                     <div class="mb-3">
                         <label for="edit_kelas" class="form-label">Kelas</label>
                         <select class="form-control" id="edit_kelas" name="kelas" required>
+                            <option value="Fakultas Kedokteran">Pilih Kelas</option>
                             <option value="Fakultas Kedokteran">Fakultas Kedokteran</option>
                             <option value="Fakultas Ekonomi">Fakultas Ekonomi</option>
                             <option value="Fakultas Teknologi Informasi">Fakultas Teknologi Informasi</option>
@@ -166,9 +176,15 @@
 function loadEditData(item) {
     document.getElementById('edit_kode_user').value = item.kode_user;
     document.getElementById('edit_fullname').value = item.fullname;
+    document.getElementById('edit_username').value = item.username;
     document.getElementById('edit_email').value = item.email;
     document.getElementById('edit_kelas').value = item.kelas;
     document.getElementById('edit_alamat').value = item.alamat;
     document.getElementById('editAnggotaForm').action = `/anggota/${item.id_user}`;
 }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#tableAnggota').DataTable();
+    });
 </script>
