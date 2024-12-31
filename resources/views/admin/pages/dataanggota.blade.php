@@ -9,7 +9,7 @@
 
     <div class="card">
         <div class="card-body">
-            <table id="tableAnggota" class="table table-striped">
+            <table id="tableAnggota" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -38,7 +38,7 @@
                                 </button>
 
                                 <!-- Hapus Anggota -->
-                                <form action="{{ route('anggota.destroy', $item->id_user) }}" method="POST" style="display: inline-block;">
+                                <form action="{{ route('anggota.destroy', $item->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus anggota ini?')">
@@ -49,7 +49,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center">Tidak ada data anggota.</td>
+                            <td colspan="6" class="text-center">No data available in table</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -180,7 +180,7 @@ function loadEditData(item) {
     document.getElementById('edit_email').value = item.email;
     document.getElementById('edit_kelas').value = item.kelas;
     document.getElementById('edit_alamat').value = item.alamat;
-    document.getElementById('editAnggotaForm').action = `/anggota/${item.id_user}`;
+    document.getElementById('editAnggotaForm').action = `/anggota/${item.id}`;
 }
 </script>
 <script>

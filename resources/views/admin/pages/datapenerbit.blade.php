@@ -1,15 +1,21 @@
 @extends('admin.layout')
+
 @section('title', 'Data Penerbit')
+
 @section('content')
-<div class="p-4">
-    <h1 class="mb-3">Data Penerbit</h1>
-
-    <!-- Button Tambah Penerbit -->
-    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalTambahPenerbit">+ Tambah Penerbit</button>
-
-    <div class="card">
+<div class="container">
+    <h1 class="mt-4">Data Penerbit</h1>
+    <div class="card my-4">
+        <div class="card-header">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPenerbitModal">Tambah Penerbit</button>
+        </div>
         <div class="card-body">
-            <table id="tablePenerbit" class="table table-striped">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <table id="tablePenerbit" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -20,62 +26,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($penerbit as $key => $item)
+                    @foreach($penerbit as $key => $item)
                         <tr>
-                            <td>{{ $penerbit->firstItem() + $key }}</td>
+                            <td>{{ $key + 1 }}</td>
                             <td>{{ $item->kode_penerbit }}</td>
                             <td>{{ $item->nama_penerbit }}</td>
+                            <td>{{ $item->status }}</td>
                             <td>
-                                @if($item->status == 'Terverifikasi')
-                                    <span class="badge bg-success">Penerbit Terverifikasi</span>
-                                @else
-                                    <span class="badge bg-danger">Penerbit Belum Terverifikasi</span>
-                                @endif
-                            </td>
-                            <td>
-                                <!-- Button Edit Penerbit -->
-                                <button class="btn btn-sm btn-info"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEditPenerbit"
-                                        onclick="loadEditData({{ $item }})">
-                                    <i class="fas fa-edit"></i> Edit
-                                </button>
-
-                                <!-- Hapus Penerbit -->
+                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editPenerbitModal" onclick="loadEditData({{ $item->id }})">Edit</button>
                                 <form action="{{ route('datapenerbit.destroy', $item->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus penerbit ini?')">
-                                        <i class="fas fa-trash-alt"></i> Hapus
-                                    </button>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus penerbit ini?')">Hapus</button>
                                 </form>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-center">Tidak ada data penerbit.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
+            <div class="mt-3">
+                {{ $penerbit->links() }}
+            </div>
         </div>
-    </div>
-
-    <div>
-        {{ $penerbit->links() }}
     </div>
 </div>
 
 <!-- Modal Tambah Penerbit -->
-<div class="modal fade" id="modalTambahPenerbit" tabindex="-1" aria-labelledby="modalTambahPenerbitLabel" aria-hidden="true">
+<div class="modal fade" id="addPenerbitModal" tabindex="-1" aria-labelledby="addPenerbitModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTambahPenerbitLabel">Tambah Penerbit</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="{{ route('datapenerbit.store') }}" method="POST">
-                @csrf
+        <form action="{{ route('datapenerbit.store') }}" method="POST">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPenerbitModalLabel">Tambah Penerbit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="kode_penerbit" class="form-label">Kode Penerbit</label>
@@ -94,25 +79,24 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 
 <!-- Modal Edit Penerbit -->
-<div class="modal fade" id="modalEditPenerbit" tabindex="-1" aria-labelledby="modalEditPenerbitLabel" aria-hidden="true">
+<div class="modal fade" id="editPenerbitModal" tabindex="-1" aria-labelledby="editPenerbitModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalEditPenerbitLabel">Edit Penerbit</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="editPenerbitForm" method="POST">
-                @csrf
-                @method('PUT')
+        <form id="editPenerbitForm" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPenerbitModalLabel">Edit Penerbit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="edit_kode_penerbit" class="form-label">Kode Penerbit</label>
@@ -131,26 +115,32 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 
+<script>
+    function loadEditData(id) {
+        fetch(`/admin/datapenerbit/${id}/edit`) // URL yang sesuai
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Penerbit tidak ditemukan');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('edit_kode_penerbit').value = data.kode_penerbit;
+                document.getElementById('edit_nama_penerbit').value = data.nama_penerbit;
+                document.getElementById('edit_status').value = data.status;
+                document.getElementById('editPenerbitForm').action = `/admin/datapenerbit/${id}`;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+document.addEventListener('DOMContentLoaded', function () {
+    $('#tablePenerbit').DataTable();
+});
+</script>
 @endsection
-
-<script>
-function loadEditData(item) {
-    document.getElementById('edit_kode_penerbit').value = item.kode_penerbit;
-    document.getElementById('edit_nama_penerbit').value = item.nama_penerbit;
-    document.getElementById('edit_status').value = item.status;
-    document.getElementById('editPenerbitForm').action = `/admin/penerbit/${item.id}`;
-}
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        $('#tablePenerbit').DataTable();
-    });
-</script>

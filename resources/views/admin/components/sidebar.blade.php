@@ -29,7 +29,7 @@
     </a>
     <div class="collapse" id="katalogBukuMenu">
     <a href="/admin/categories" class="submenu"><i class="fas fa-circle"></i> Kategori Buku</a>
-    <a href="/admin/books" class="submenu"><i class="fas fa-circle"></i> Data Buku</a>
+    <a href="/admin/databuku" class="submenu"><i class="fas fa-circle"></i> Data Buku</a>
     </div>
 
     <!-- Keluar -->

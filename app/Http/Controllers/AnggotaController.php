@@ -10,7 +10,7 @@ class AnggotaController extends Controller
 {
     public function index()
     {
-        $lastUser = Login::select('kode_user')->orderBy('id_user', 'desc')->first();
+        $lastUser = Login::select('kode_user')->orderBy('id', 'desc')->first();
         $newKodeUser = 'AP' . str_pad(($lastUser ? intval(substr($lastUser->kode_user, 2)) + 1 : 1), 3, '0', STR_PAD_LEFT);
 
         // Dapatkan data anggota

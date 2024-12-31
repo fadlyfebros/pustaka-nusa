@@ -32,7 +32,7 @@
                                     onclick="loadEditData({{ $admin }})">
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
-                                <form action="{{ route('dataadmin.destroy', $admin->id_user) }}" method="POST" style="display: inline-block;">
+                                <form action="{{ route('dataadmin.destroy', $admin->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus admin ini?')">
@@ -121,7 +121,7 @@
 function loadEditData(admin) {
     document.getElementById('edit_fullname').value = admin.fullname;
     document.getElementById('edit_username').value = admin.username;
-    document.getElementById('editAdminForm').action = `/admin/${admin.id_user}`;
+    document.getElementById('editAdminForm').action = `/admin/${admin.id}`;
 }
 </script>
 <script>

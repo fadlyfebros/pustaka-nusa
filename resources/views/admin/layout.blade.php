@@ -27,6 +27,7 @@
       transition: all 0.3s ease;
       z-index: 1051;
       overflow-y: auto;
+      margin-top: 20px;
     }
 
     .sidebar.collapsed {

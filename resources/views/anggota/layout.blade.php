@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Pustaka Nusa</title>
+  <title>@yield('title', 'Pustaka Nusa')</title>
+  <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -23,6 +27,7 @@
       transition: all 0.3s ease;
       z-index: 1051;
       overflow-y: auto;
+      margin-top: 20px;
     }
 
     .sidebar.collapsed {
@@ -76,16 +81,52 @@
 
     .navbar {
       z-index: 1052;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1052;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .content {
       margin-left: 250px;
       transition: margin-left 0.3s ease;
+      margin-top: 70px;
     }
 
     .content.fullscreen {
       margin-left: 0;
     }
+    .blur {
+        filter: blur(5px);
+        transition: filter 0.3s ease;
+    }
+    .profile-card {
+        padding: 20px;
+        width: 300px; /* Atur lebar sesuai kebutuhan */
+        background-color: #f8f9fa; /* Warna latar */
+        border-radius: 10px; /* Opsional, untuk sudut melengkung */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opsional, untuk memberikan efek bayangan */
+        text-align: left; /* Atur teks menjadi rata kiri */
+    }
+    .profile-card h6 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .profile-card small {
+        font-size: 14px;
+    }
+    .pagination .page-item .page-link i {
+        font-size: 0.8rem; /* Mengatur ukuran ikon pagination */
+        line-height: 1; /* Menyesuaikan posisi vertikal ikon */
+    }
+
+    .pagination .page-item .page-link {
+        font-size: 0.9rem;
+    }
+
 
     /* Media Query untuk Responsivitas */
     @media (max-width: 2560px) {
@@ -202,58 +243,26 @@
     }
   </style>
 </head>
-<body>
-  <div class="container-fluid">
+<div class="container-fluid">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <div class="container-fluid d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-          <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="img/logo.png" alt="Pustaka Nusa Logo" width="30" height="30" class="d-inline-block align-top">
-            <span class="ms-2">Pustaka Nusa</span>
-          </a>
-          <button class="btn btn-dark ms-3" id="hamburger-menu" type="button" onclick="toggleSidebar()">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        </div>
-        <div class="profile-info">
-          <img src="img/person.png" alt="Profile Picture">
-          <span>Fadly Febro</span>
-        </div>
-      </div>
-    </nav>
+    @include('anggota.components.navbar')
 
     <!-- Overlay -->
     <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
     <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-      <div class="menu-header mt-5">Main Menu</div>
-      <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-      <a href="peminjaman.html"><i class="fas fa-book"></i> Peminjaman Buku</a>
-      <a href="#"><i class="fas fa-undo"></i> Pengembalian Buku</a>
-      <div class="menu-header mt-5">Lanjutan</div>
-      <a href="#"><i class="fas fa-sign-out-alt"></i> Keluar</a>
-    </div>
+    @include('anggota.components.sidebar')
 
     <!-- Main Content -->
     <div class="content" id="content">
-      <div class="p-4">
-        <h1 class="mb-3">Dashboard</h1>
-        <p class="alert alert-secondary">
-          Selamat Siang, Selamat datang <strong>Fadly Febro</strong> di Pustaka Nusa.
-        </p>
-        <div class="text-center">
-          <img src="img/logo.png" alt="Pustaka Nusa Logo">
-          <h2 class="mt-3">Pustaka Nusa</h2>
-        </div>
-      </div>
+        @yield('content')
     </div>
-  </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script>
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
     const content = document.getElementById('content');
@@ -267,6 +276,6 @@
         overlay.classList.toggle('active');
       }
     }
-  </script>
+    </script>
 </body>
 </html>

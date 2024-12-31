@@ -10,7 +10,6 @@ class Login extends Authenticatable
     use HasFactory;
 
     protected $table = 'login';
-    protected $primaryKey = 'id_user';
 
     protected $fillable = [
         'kode_user',

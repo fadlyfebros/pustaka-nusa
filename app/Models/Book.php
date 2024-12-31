@@ -9,11 +9,18 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $table = 'books';
+
     protected $fillable = [
-        'judul', 'kategori_id', 'penerbit_id', 'pengarang', 'tahun_terbit', 'isbn', 'jumlah_baik', 'jumlah_rusak'
+        'judul_buku',
+        'kategori_id',
+        'penerbit_id',
+        'pengarang',
+        'tahun_terbit',
+        'isbn',
+        'jumlah_buku',
     ];
 
-    // App\Models\Book.php
     public function kategori()
     {
         return $this->belongsTo(Category::class, 'kategori_id');
@@ -24,3 +31,4 @@ class Book extends Model
         return $this->belongsTo(Penerbit::class, 'penerbit_id');
     }
 }
+
