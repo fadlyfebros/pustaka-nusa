@@ -74,7 +74,7 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer Anda:
 
 3. **Salin file `.env.example` menjadi `.env`:**
    ```bash
-   cp .env.example .env
+   copy .env.example .env
    ```
 
 4. **Generate application key:**
