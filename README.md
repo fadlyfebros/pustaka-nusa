@@ -1,18 +1,56 @@
 
-## Hasil Project
-
-Berikut adalah beberapa tampilan dari hasil project:
-
-![Gambar 1](public/img/readme/1.png)
-![Gambar 2](public/img/readme/2.png)
-![Gambar 3](public/img/readme/3.png)
-![Gambar 4](public/img/readme/4.png)
+## Daftar Isi
+1. [Pendahuluan](#pendahuluan)
+2. [Fitur](#fitur)
+3. [Persyaratan](#persyaratan)
+4. [Instalasi](#instalasi)
+5. [Hasil Project](#hasil-project)
 
 ---
 
-# Panduan Clone Laravel dari GitHub
+## Pendahuluan
 
-## Langkah-Langkah Clone Laravel
+Proyek ini adalah tugas Project akhir semester 3 dengan tema Perpustakaan yang dikembangkan oleh:
+1. Fadly Febro  
+2. Robi Moreno  
+3. Azzahri Alfiansyah  
+4. Abdiel Rafif Elfairuz  
+
+Proyek ini bertujuan untuk memberikan contoh implementasi sistem perpustakaan yang mencakup pengelolaan data anggota, buku, dan peminjaman, dengan fitur autentikasi dan role-based access.
+Project Kami Menggunakan Laravel: <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
+---
+
+## Fitur
+
+Proyek ini memiliki dua role dengan fitur berikut:
+
+### Role Admin:
+- **Data Anggota**: Kelola informasi anggota perpustakaan.  
+- **Data Penerbit**: Kelola informasi penerbit buku.  
+- **Data Administrator**: Kelola pengguna dengan hak akses admin.  
+- **Data Peminjaman**: Kelola transaksi peminjaman buku.  
+- **Kategori**: Kelola kategori buku.  
+- **Data Buku**: Kelola koleksi buku di perpustakaan.  
+
+### Role Anggota:
+- **Peminjaman Buku**: Fasilitas peminjaman buku oleh anggota.  
+- **Pengembalian Buku**: Fasilitas untuk pengembalian buku yang telah dipinjam.  
+
+---
+
+## Persyaratan
+
+Untuk menjalankan proyek ini, Anda memerlukan:
+- **XAMPP**: Untuk server lokal dan database MySQL.  
+- **Composer**: Untuk mengelola dependensi PHP.  
+- **Git**: Untuk meng-clone repository dari GitHub.  
+
+---
+
+## Instalasi
+
+Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer Anda:
 
 1. **Clone repository:**
    ```bash
@@ -41,18 +79,8 @@ Berikut adalah beberapa tampilan dari hasil project:
    ```
 
 6. **Konfigurasi file `.env`:**
-   Pada bagian berikut:
-   ```env
-   DB_CONNECTION=sqlite
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=laravel
-   DB_USERNAME=root
-   DB_PASSWORD=
+   Edit bagian berikut:
    ```
-
-   Ubah menjadi:
-   ```env
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
    DB_PORT=3306
@@ -64,15 +92,28 @@ Berikut adalah beberapa tampilan dari hasil project:
 7. **Tambahkan database di phpMyAdmin:**
    - Masuk ke phpMyAdmin.
    - Buat database baru dengan nama `pustakanusa`.
-   - Pastikan konfigurasi database di file `.env` sesuai dengan langkah sebelumnya.
 
-8. **Jalankan server Laravel:**
+8. **Jalankan migration untuk membuat tabel di database:**
+   ```bash
+   php artisan migrate
+   ```
+
+9. **Jalankan server Laravel:**
    ```bash
    php artisan serve
    ```
 
-9. **Akses aplikasi di browser:**
-   Buka browser dan akses URL berikut:
-   ```
-   http://127.0.0.1:8000
-   ```
+10. **Akses aplikasi di browser:**
+    Buka URL berikut di browser Anda:  
+    [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+---
+
+## Hasil Project
+
+Berikut adalah beberapa tampilan dari hasil project:
+
+![Gambar 1](public/img/readme/1.png)  
+![Gambar 2](public/img/readme/2.png)  
+![Gambar 3](public/img/readme/3.png)  
+![Gambar 4](public/img/readme/4.png)
