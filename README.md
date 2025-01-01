@@ -16,8 +16,17 @@ Proyek ini adalah tugas Project akhir semester 3 dengan tema Perpustakaan yang d
 3. Azzahri Alfiansyah  
 4. Abdiel Rafif Elfairuz  
 
-Proyek ini bertujuan untuk memberikan contoh implementasi sistem perpustakaan yang mencakup pengelolaan data anggota, buku, dan peminjaman, dengan fitur autentikasi dan role-based access.
-Project Kami Menggunakan Laravel: <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Proyek ini bertujuan untuk memberikan contoh implementasi sistem perpustakaan yang mencakup pengelolaan data anggota, buku, dan peminjaman, dengan fitur autentikasi dan role-based access.
+Project Kami Menggunakan Laravel dan Bootstrap:
+
+<div style="display: flex; justify-content: space-evenly; align-items: center; gap: 20px; margin-top: 20px;">
+  <a href="https://laravel.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="200" alt="Laravel Logo">
+  </a>
+  <a href="https://getbootstrap.com/" target="_blank">
+    <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" alt="Bootstrap Logo" width="200" height="165">
+  </a>
+</div>
 
 ---
 
