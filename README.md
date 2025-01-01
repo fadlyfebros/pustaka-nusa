@@ -1,11 +1,12 @@
+
 ## Hasil Project
 
 Berikut adalah beberapa tampilan dari hasil project:
 
-![Gambar 1](1.png)
-![Gambar 2](2.png)
-![Gambar 3](3.png)
-![Gambar 4](4.png)
+![Gambar 1](public/img/readme/1.png)
+![Gambar 2](public/img/readme/2.png)
+![Gambar 3](public/img/readme/3.png)
+![Gambar 4](public/img/readme/4.png)
 
 ---
 
@@ -60,12 +61,17 @@ Berikut adalah beberapa tampilan dari hasil project:
    DB_PASSWORD=
    ```
 
-7. **Jalankan server Laravel:**
+7. **Tambahkan database di phpMyAdmin:**
+   - Masuk ke phpMyAdmin.
+   - Buat database baru dengan nama `pustakanusa`.
+   - Pastikan konfigurasi database di file `.env` sesuai dengan langkah sebelumnya.
+
+8. **Jalankan server Laravel:**
    ```bash
    php artisan serve
    ```
 
-8. **Akses aplikasi di browser:**
+9. **Akses aplikasi di browser:**
    Buka browser dan akses URL berikut:
    ```
    http://127.0.0.1:8000
