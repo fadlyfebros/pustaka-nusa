@@ -1,10 +1,28 @@
 @extends('admin.layout')
 
-@section('title', 'Data Penerbit')
+@section('title', 'Data Penerbit - Pustaka Nusa')
 
 @section('content')
 <div class="container">
-    <h1 class="mt-4">Data Penerbit</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex align-items-center">
+            <h1 class="mb-0 me-3">Data Penerbit</h1>
+            <p class="mb-0 text-muted">{{ formatTanggal() }}</p>
+        </div>
+        <div class="text-end">
+            <nav aria-label="breadcrumb" class="mb-1">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="/admin" style="text-decoration: none; color: black; display: flex; align-items: center; gap: 5px;">
+                            <i class="bi bi-house"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Penerbit</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
     <div class="card my-4">
         <div class="card-header">
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPenerbitModal">Tambah Penerbit</button>

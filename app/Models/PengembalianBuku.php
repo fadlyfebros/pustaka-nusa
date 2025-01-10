@@ -15,8 +15,8 @@ class PengembalianBuku extends Model
         'user_id',
         'book_id',
         'tanggal_pengembalian',
-        'kondisi_buku',
         'denda',
+        'status',
     ];
 
     public function user()

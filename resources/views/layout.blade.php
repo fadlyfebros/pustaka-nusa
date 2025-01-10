@@ -44,6 +44,9 @@
             font-size: 2.5rem;
             margin-bottom: 50px;
         }
+        .contact-section{
+            margin-bottom: 50px;
+        }
 
         /* Responsiveness */
         @media (max-width: 768px) {
@@ -55,7 +58,10 @@
                 font-size: 2rem; /* Perbesar teks pada mobile */
             }
             .hero-text h1 {
-                font-size: 3.5rem; /* Perbesar heading pada mobile */
+                font-size: 2rem; /* Perbesar heading pada mobile */
+            }
+            .khusus{
+                flex: 1;
             }
         }
     </style>
@@ -65,7 +71,7 @@
     @include('partials.navbar')
 
     <!-- Content -->
-    <div class="container mt-4">
+    <div class="khusus container mt-4">
         @yield('content')
     </div>
 

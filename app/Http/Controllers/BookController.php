@@ -11,11 +11,16 @@ class BookController extends Controller
 {
     public function index()
     {
+        // Mengambil data buku dengan relasi kategori dan penerbit
         $books = Book::with('kategori', 'penerbit')->paginate(10);
+
+        // Mengambil semua kategori dan penerbit untuk filter
         $categories = Category::all();
         $penerbits = Penerbit::all();
 
-        return view('admin.pages.books', compact('books', 'categories', 'penerbits'));
+        $totalBooks = Book::sum('jumlah_buku');
+
+        return view('admin.pages.books', compact('books', 'categories', 'penerbits', 'totalBooks'));
     }
 
     public function store(Request $request)

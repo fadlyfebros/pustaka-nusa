@@ -26,3 +26,17 @@ if (!function_exists('ucapanWaktu')) {
         }
     }
 }
+if (!function_exists('formatTanggal')) {
+    function formatTanggal()
+    {
+        \Carbon\Carbon::setLocale('id');
+        return now()->timezone('Asia/Jakarta')->translatedFormat('l, j F Y');
+    }
+}
+
+if (!function_exists('hitungTanggalPengembalian')) {
+    function hitungTanggalPengembalian($tanggalPeminjaman)
+    {
+        return date('Y-m-d', strtotime($tanggalPeminjaman . ' +14 days'));
+    }
+}

@@ -7,6 +7,7 @@
   <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <!-- DataTables CSS -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
   <!-- jQuery -->
@@ -88,6 +89,12 @@
       background-color: #fff;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+    .navbar .container-fluid {
+        display: flex;
+        justify-content: start; /* Memastikan semua elemen bergeser ke kiri */
+        align-items: center;
+    }
+
 
     .content {
       margin-left: 250px;
@@ -260,6 +267,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- DataTables JS -->
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script>

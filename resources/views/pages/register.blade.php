@@ -133,6 +133,9 @@
             <p>Sudah punya akun? <a href="/login">Masuk di sini</a></p>
         </div>
         <div class="footer-text">
+            <p>Kembali ke halaman <a href="{{ url('/') }}" style="color: #007bff;">Home</a></p>
+        </div>
+        <div class="footer-text">
             <p>&copy; 2024 <a href="#">Pustaka Nusa</a></p>
         </div>
     </div>

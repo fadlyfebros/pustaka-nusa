@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
+    <div class="container-fluid justify-content-start align-items-center">
+        <!-- Logo dan Tombol Sidebar -->
         <div class="d-flex align-items-center">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center" href="/admin">
                 <img src="{{ asset('img/logo.png') }}" alt="Pustaka Nusa Logo" width="30" height="30" class="d-inline-block align-top">
                 <span class="ms-2">Pustaka Nusa</span>
             </a>
@@ -9,8 +10,9 @@
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <!-- Dropdown Profil -->
+        <div class="dropdown ms-auto">
+            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle justify-content-start" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ asset('img/person.png') }}" alt="Profile Picture" width="40" height="40" class="rounded-circle">
                 <span class="ms-2">{{ session('user.username') }}</span>
             </a>

@@ -10,6 +10,7 @@
             </button>
         </div>
         <div class="dropdown">
+            <div class="con"></div>
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ asset('img/person.png') }}" alt="Profile Picture" width="40" height="40" class="rounded-circle">
                 <span class="ms-2">{{ session('user.username') }}</span>

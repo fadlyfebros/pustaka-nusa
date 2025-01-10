@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->date('tanggal_peminjaman');
             $table->date('tanggal_pengembalian');
-            $table->string('kondisi_buku');
             $table->timestamps();
 
             // Foreign key ke tabel login

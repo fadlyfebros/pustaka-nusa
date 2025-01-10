@@ -1,15 +1,38 @@
 @extends('admin.layout')
-@section('title', 'Data Anggota')
+@section('title', 'Data Anggota - Pustaka Nusa')
 @section('content')
-<div class="p-4">
-    <h1 class="mb-3">Data Anggota</h1>
+<div class="p-1">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex align-items-center">
+            <h1 class="mb-0 me-3">Data Anggota</h1>
+            <p class="mb-0 text-muted">{{ formatTanggal() }}</p>
+        </div>
+        <div class="text-end">
+            <nav aria-label="breadcrumb" class="mb-1">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="/admin" style="text-decoration: none; color: black; display: flex; align-items: center; gap: 5px;">
+                            <i class="bi bi-house"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Anggota</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
 
     <!-- Button Tambah Anggota -->
     <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalTambahAnggota">+ Tambah Anggota</button>
 
     <div class="card">
         <div class="card-body">
-            <table id="tableAnggota" class="table table-bordered table-striped">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -182,9 +205,4 @@ function loadEditData(item) {
     document.getElementById('edit_alamat').value = item.alamat;
     document.getElementById('editAnggotaForm').action = `/anggota/${item.id}`;
 }
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        $('#tableAnggota').DataTable();
-    });
 </script>

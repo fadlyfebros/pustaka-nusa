@@ -1,58 +1,83 @@
 @extends('admin.layout')
-@section('title', 'Data Buku')
+@section('title', 'Data Buku - Pustaka Nusa')
 @section('content')
 
-<div class="p-4">
-    <h1>Data Buku</h1>
+<div class="p-1">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex align-items-center">
+            <h1 class="mb-0 me-3">Data Buku</h1>
+            <p class="mb-0 text-muted">{{ formatTanggal() }}</p>
+        </div>
+        <div class="text-end">
+            <nav aria-label="breadcrumb" class="mb-1">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="/admin" style="text-decoration: none; color: black; display: flex; align-items: center; gap: 5px;">
+                            <i class="bi bi-house"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Buku</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
     <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalTambahBuku">+ Tambah Buku</button>
 
     <div class="card">
         <div class="card-body">
-            <table id="tableBooks" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Judul</th>
-                        <th>Kategori</th>
-                        <th>Penerbit</th>
-                        <th>Pengarang</th>
-                        <th>Tahun Terbit</th>
-                        <th>ISBN</th>
-                        <th>Jumlah Buku</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($books as $key => $book)
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <div class="table-responsive">
+                <table id="tableBooks" class="table table-striped">
+                    <thead>
                         <tr>
-                            <td>{{ $books->firstItem() + $key }}</td>
-                            <td>{{ $book->judul_buku }}</td>
-                            <td>{{ $book->kategori->name ?? 'Kategori tidak ditemukan' }}</td>
-                            <td>{{ $book->penerbit->nama_penerbit }}</td>
-                            <td>{{ $book->pengarang }}</td>
-                            <td>{{ $book->tahun_terbit }}</td>
-                            <td>{{ $book->isbn }}</td>
-                            <td>{{ $book->jumlah_buku }}</td>
-                            <td>
-                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditBuku" onclick="loadEditData(@json($book))">
-                                    <i class="fas fa-edit"></i> Edit
-                                </button>
-                                <form action="{{ route('admin.pages.databuku.destroy', $book->id) }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus buku ini?')">
-                                        <i class="fas fa-trash-alt"></i> Hapus
+                            <th>No</th>
+                            <th>Judul</th>
+                            <th>Kategori</th>
+                            <th>Penerbit</th>
+                            <th>Pengarang</th>
+                            <th>Tahun Terbit</th>
+                            <th>ISBN</th>
+                            <th>Jumlah Buku</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($books as $key => $book)
+                            <tr>
+                                <td>{{ $books->firstItem() + $key }}</td>
+                                <td>{{ $book->judul_buku }}</td>
+                                <td>{{ $book->kategori->name ?? 'Kategori tidak ditemukan' }}</td>
+                                <td>{{ $book->penerbit->nama_penerbit }}</td>
+                                <td>{{ $book->pengarang }}</td>
+                                <td>{{ $book->tahun_terbit }}</td>
+                                <td>{{ $book->isbn }}</td>
+                                <td>{{ $book->jumlah_buku }}</td>
+                                <td>
+                                    <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditBuku" onclick="loadEditData(@json($book))">
+                                        <i class="fas fa-edit"></i> Edit
                                     </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="9" class="text-center">No data available in table</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                                    <form action="{{ route('admin.pages.databuku.destroy', $book->id) }}" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus buku ini?')">
+                                            <i class="fas fa-trash-alt"></i> Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="9" class="text-center">No data available in table</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -176,21 +201,15 @@
 
 <script>
     function loadEditData(book) {
-        const form = document.getElementById('editBukuForm');
-        form.action = `/books/${book.id}`;
+        const form = document.getElementById('formEditBuku');
+        form.action = `/admin/databuku/${book.id}`;
         document.getElementById('edit_judul_buku').value = book.judul_buku;
+        document.getElementById('edit_kategori_id').value = book.kategori_id;
+        document.getElementById('edit_penerbit_id').value = book.penerbit_id;
         document.getElementById('edit_pengarang').value = book.pengarang;
         document.getElementById('edit_tahun_terbit').value = book.tahun_terbit;
         document.getElementById('edit_isbn').value = book.isbn;
         document.getElementById('edit_jumlah_buku').value = book.jumlah_buku;
-
-        // Set selected category
-        document.getElementById('edit_kategori_id').value = book.kategori_id;
     }
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        $('#tableBooks').DataTable();
-    });
 </script>
 @endsection

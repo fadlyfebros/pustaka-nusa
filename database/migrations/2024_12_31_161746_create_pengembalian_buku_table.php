@@ -16,21 +16,16 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('book_id');
             $table->date('tanggal_pengembalian');
-            $table->string('kondisi_buku');
-            $table->integer('denda')->nullable();
+            $table->integer('denda')->default(0);
+            $table->string('status')->default('Tepat Waktu');
             $table->timestamps();
 
-            // Foreign key
             $table->foreign('user_id')->references('id')->on('login')->onDelete('cascade');
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('pengembalian_buku');
     }

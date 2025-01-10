@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Data Buku')
+@section('title', 'Data Buku - Pustaka Nusa')
 @section('content')
 
 <div class="p-4">
@@ -9,6 +9,11 @@
 
     <div class="card">
         <div class="card-body">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <table id="tableBuku" class="table table-striped">
                 <thead>
                     <tr>

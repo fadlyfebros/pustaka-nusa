@@ -61,7 +61,7 @@ class AuthController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)) {
             Session::put('user', [
-                'id' => $user->id, // Perbaikan di sini
+                'id' => $user->id,
                 'username' => $user->username,
                 'fullname' => $user->fullname,
                 'join_date' => $user->created_at,

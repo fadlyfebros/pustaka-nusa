@@ -1,7 +1,8 @@
 @extends('admin.layout')
-@section('title', 'Data Peminjaman Buku')
-@section('content')
 
+@section('title', 'Data Peminjaman Buku')
+
+@section('content')
 <div class="p-4">
     <h1>Data Peminjaman Buku</h1>
 
@@ -21,27 +22,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Example Data -->
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>Pemrograman Laravel</td>
-                        <td>2024-12-20</td>
-                        <td>2024-12-27</td>
-                        <td>Baik</td>
-                        <td>Rusak</td>
-                        <td>Rp 50,000</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>Desain Database</td>
-                        <td>2024-12-15</td>
-                        <td>2024-12-25</td>
-                        <td>Baik</td>
-                        <td>Baik</td>
-                        <td>Rp 0</td>
-                    </tr>
+                    @forelse ($peminjaman as $key => $item)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $item->user->fullname }}</td>
+                            <td>{{ $item->book->judul_buku }}</td>
+                            <td>{{ $item->tanggal_peminjaman }}</td>
+                            <td>{{ $item->tanggal_pengembalian }}</td>
+                            <td>{{ $item->kondisi_saat_dipinjam }}</td>
+                            <td>{{ $item->kondisi_saat_dikembalikan ?? 'Belum Dikembalikan' }}</td>
+                            <td>{{ $item->denda ? 'Rp '.number_format($item->denda, 0, ',', '.') : 'Rp 0' }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="8" class="text-center">Belum ada data peminjaman.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
@@ -53,5 +49,4 @@
         $('#tablePeminjaman').DataTable();
     });
 </script>
-
 @endsection

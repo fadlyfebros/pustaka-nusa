@@ -16,16 +16,15 @@ class PeminjamanBuku extends Model
         'book_id',
         'tanggal_peminjaman',
         'tanggal_pengembalian',
-        'kondisi_buku',
     ];
 
     public function user()
     {
         return $this->belongsTo(Login::class, 'user_id');
     }
-
     public function book()
     {
         return $this->belongsTo(Book::class, 'book_id');
     }
+
 }
