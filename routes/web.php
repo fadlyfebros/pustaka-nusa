@@ -17,17 +17,21 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('pages.about');
 });
-Route::get('/contact', function () {
-    return view('pages.contactus');
+Route::get('/lupapassword', function () {
+    return view('pages.lupapassword');
 });
 Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
 
-// awal router admin
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/lupapassword', [AuthController::class, 'showResetPasswordForm'])->name('password.request');
+Route::post('/lupapassword', [AuthController::class, 'sendResetPasswordLink']);
+Route::get('/resetpassword/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
+Route::post('/resetpassword/{token}', [AuthController::class, 'resetPassword'])->name('password.update');
+// awal router admin
 Route::get('/admin', function () {
     return view('admin.pages.home');
 })->name('admin.dashboard');

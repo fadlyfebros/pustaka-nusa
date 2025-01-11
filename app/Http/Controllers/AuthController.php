@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Login;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    // Tampilkan form register
     public function showRegisterForm()
     {
         return view('pages.register');
     }
 
+    // Proses registrasi
     public function register(Request $request)
     {
         $request->validate([
@@ -23,7 +28,7 @@ class AuthController extends Controller
             'fullname' => 'required|max:100',
         ]);
 
-        // Update kolom orderBy
+        // Generate kode_user
         $lastUser = Login::select('kode_user')->orderBy('id', 'desc')->first();
         $newKodeUser = 'AP' . str_pad(($lastUser ? intval(substr($lastUser->kode_user, 2)) + 1 : 1), 3, '0', STR_PAD_LEFT);
 
@@ -43,11 +48,13 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Pendaftaran berhasil! Silakan login.');
     }
 
+    // Tampilkan form login
     public function showLoginForm()
     {
         return view('pages.login');
     }
 
+    // Proses login
     public function login(Request $request)
     {
         $request->validate([
@@ -76,9 +83,82 @@ class AuthController extends Controller
         return back()->withErrors(['login_error' => 'Username atau password salah!']);
     }
 
+    // Logout
     public function logout()
     {
         Session::forget('user');
         return redirect()->route('login')->with('success', 'Anda telah logout.');
+    }
+
+    // Tampilkan form lupa password
+    public function showResetPasswordForm()
+    {
+        return view('pages.lupapassword');
+    }
+
+    // Kirim link reset password
+    public function sendResetPasswordLink(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:login,email',
+        ]);
+
+        $user = Login::where('email', $request->email)->first();
+        $token = Str::random(60);
+
+        // Simpan token ke tabel password_resets
+        DB::table('password_resets')->updateOrInsert(
+            ['email' => $user->email],
+            ['token' => $token, 'created_at' => now()]
+        );
+
+        $resetLink = url('/resetpassword/' . $token);
+
+        // Kirim email
+        Mail::send('emails.reset_password', [
+            'username' => $user->username,
+            'reset_link' => $resetLink,
+        ], function ($message) use ($user) {
+            $message->to($user->email)->subject('Permintaan Reset Password');
+        });
+
+        return back()->with('success', 'Link reset password telah dikirim ke email Anda.');
+    }
+
+    // Tampilkan form reset password
+    public function showResetPassword($token)
+    {
+        return view('pages.resetpassword', ['token' => $token]);
+    }
+
+    // Proses reset password
+    public function resetPassword(Request $request, $token)
+    {
+        $request->validate([
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        // Validasi token
+        $resetRequest = DB::table('password_resets')->where('token', $token)->first();
+
+        if (!$resetRequest) {
+            return redirect('/login')->withErrors(['Token tidak valid atau telah kedaluwarsa.']);
+        }
+
+        // Cari user berdasarkan email
+        $user = Login::where('email', $resetRequest->email)->first();
+
+        if (!$user) {
+            return redirect('/login')->withErrors(['User tidak ditemukan.']);
+        }
+
+        // Update password
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        // Hapus token setelah berhasil
+        DB::table('password_resets')->where('token', $token)->delete();
+
+        return redirect('/login')->with('success', 'Password berhasil direset. Silakan login.');
     }
 }

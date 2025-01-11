@@ -7,6 +7,7 @@
     <title>@yield('title', 'Pustaka Nusa')</title>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -163,9 +164,17 @@
             <div class="mb-3">
                 <input type="text" name="username" class="form-control" placeholder="Username" required>
             </div>
-            <div class="mb-3">
-                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <div class="mb-3 position-relative">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                <span class="position-absolute top-50 end-0 translate-middle-y me-3">
+                    <i class="bi bi-eye-slash" id="togglePassword" style="cursor: pointer; font-size: 1.2rem;"></i>
+                </span>
             </div>
+            <a href="{{ route('password.request') }}"
+                class="text-decoration-none"
+                style="font-size: 14px; margin-left: 220px;">
+                Lupa Password?
+            </a>
             <button type="submit" class="btn btn-primary w-100">Masuk</button>
         </form>
 
@@ -180,5 +189,19 @@
             <p>&copy; 2024 <a href="#">Pustaka Nusa</a></p>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+
+            // Toggle the eye icon
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    </script>
 </body>
 </html>

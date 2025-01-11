@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'About - Pustaka Nusa')
+@section('title', 'Tentang Kami - Pustaka Nusa')
 
 @section('content')
 <div class="hero-section d-flex flex-lg-row flex-column align-items-center justify-content-between p-5"

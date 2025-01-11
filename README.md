@@ -1,3 +1,10 @@
+<p align="center">
+  <img src="public/img/logo.png" alt="Pustaka Nusa Logo" width="200px">
+</p>
+
+<p align="center">
+    <b>Pustaka Nusa</b>
+</p>
 
 ## Daftar Isi
 1. [Pendahuluan](#pendahuluan)

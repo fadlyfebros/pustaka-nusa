@@ -83,8 +83,7 @@
       z-index: 1052;
       position: fixed;
       top: 0;
-      width: 100%;
-      z-index: 1052;
+      width: 98.5%;
       background-color: #fff;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
