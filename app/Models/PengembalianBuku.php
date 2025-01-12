@@ -11,13 +11,7 @@ class PengembalianBuku extends Model
 
     protected $table = 'pengembalian_buku';
 
-    protected $fillable = [
-        'user_id',
-        'book_id',
-        'tanggal_pengembalian',
-        'denda',
-        'status',
-    ];
+    protected $fillable = ['user_id', 'book_id', 'tanggal_peminjaman', 'tanggal_pengembalian', 'denda', 'status'];
 
     public function user()
     {

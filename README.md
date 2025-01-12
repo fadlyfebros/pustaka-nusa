@@ -104,6 +104,17 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer Anda:
    DB_USERNAME=root
    DB_PASSWORD=
    ```
+   **Tambahkan Konfigurasi file `.env`:, untuk mereset password**
+   ```
+   MAIL_MAILER=smtp
+   MAIL_HOST=smtp.gmail.com
+   MAIL_PORT=587
+   MAIL_USERNAME=fadlyfebro@gmail.com
+   MAIL_PASSWORD=wtjgrqhpntjijlsz
+   MAIL_ENCRYPTION=tls
+   MAIL_FROM_ADDRESS=fadlyfebro@gmail.com
+   MAIL_FROM_NAME="Pustaka Nusa"
+   ```
 
 7. **Tambahkan database di phpMyAdmin:**
    - Masuk ke phpMyAdmin.

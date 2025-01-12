@@ -80,9 +80,6 @@ class PengembalianBukuController extends Controller
             'status' => $status,
         ]);
 
-        // Hapus data peminjaman
-        $peminjaman->delete();
-
         return redirect()->route('anggota.pages.pengembalian.index')->with('success', $notifikasi);
     }
 }

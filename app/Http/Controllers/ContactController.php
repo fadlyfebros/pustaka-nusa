@@ -31,6 +31,6 @@ class ContactController extends Controller
         });
 
         // Redirect kembali dengan pesan sukses
-        return back()->with('success', 'Pesan Anda berhasil dikirim!');
+        return redirect()->route('contact.form')->with('success', 'Pesan Anda berhasil dikirim!');
     }
 }

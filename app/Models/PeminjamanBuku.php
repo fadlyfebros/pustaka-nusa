@@ -11,12 +11,7 @@ class PeminjamanBuku extends Model
 
     protected $table = 'peminjaman_buku';
 
-    protected $fillable = [
-        'user_id',
-        'book_id',
-        'tanggal_peminjaman',
-        'tanggal_pengembalian',
-    ];
+    protected $fillable = ['user_id', 'book_id', 'tanggal_peminjaman', 'tanggal_pengembalian'];
 
     public function user()
     {

@@ -98,7 +98,7 @@
             <button type="submit" class="btn btn-primary w-100">Kirim Link Reset Password</button>
         </form>
         <div class="footer-text">
-            <p>Kembali ke halaman <a href="{{ url('/Login') }}" style="color: #007bff;">Login</a></p>
+            <p>Kembali ke halaman <a href="/login" style="color: #007bff;">Login</a></p>
         </div>
         <div class="footer-text">
             <p>&copy; 2024 <a href="#">Pustaka Nusa</a></p>

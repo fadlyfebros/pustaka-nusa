@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DataBukuController;
 use App\Http\Controllers\PeminjamanBukuController;
 use App\Http\Controllers\PengembalianBukuController;
 
@@ -17,6 +18,9 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('pages.about');
 });
+Route::get('/contact', function () {
+    return view('pages.contactus');
+})->name('contact.form');
 Route::get('/lupapassword', function () {
     return view('pages.lupapassword');
 });
@@ -70,9 +74,9 @@ Route::resource('/admin/databuku', controller: BookController::class)->names([
     'update' => 'admin.pages.databuku.update',
     'destroy' => 'admin.pages.databuku.destroy',
 ]);
-Route::get('/admin/datapeminjamanbuku', function () {
-    return view('admin.pages.datapeminjamanbuku', );
-});
+
+Route::get('/admin/datapeminjamanbuku', [DataBukuController::class, 'index'])->name('admin.data_buku.index');
+
 // akhir router admin
 
 Route::get('/anggota', function () {
