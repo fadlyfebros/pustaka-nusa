@@ -67,7 +67,8 @@ class AuthController extends Controller
             ->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
-            Session::put('user', [
+            session_start();
+            $_SESSION['user'] = [
                 'id' => $user->id,
                 'username' => $user->username,
                 'fullname' => $user->fullname,
@@ -75,9 +76,10 @@ class AuthController extends Controller
                 'last_login' => $user->terakhir_login,
                 'verif' => $user->verif,
                 'role' => $user->role,
-            ]);
+            ];
 
-            return redirect($user->role === 'admin' ? '/admin' : '/anggota')->with('success', 'Login berhasil!');
+            // Redirect berdasarkan peran pengguna
+            return redirect($user->role === 'admin' ? 'admin' : 'anggota')->with('success', 'Login berhasil!');
         }
 
         return back()->withErrors(['login_error' => 'Username atau password salah!']);
@@ -86,8 +88,9 @@ class AuthController extends Controller
     // Logout
     public function logout()
     {
-        Session::forget('user');
-        return redirect()->route('login')->with('success', 'Anda telah logout.');
+        session_start();
+        session_destroy(); // Hapus semua sesi
+        return redirect('/login')->with('success', 'Berhasil logout!');
     }
 
     // Tampilkan form lupa password
